@@ -20,6 +20,6 @@ jobs:
                 "type": "pipeline_ref_target",
                 "ref_type": "branch",
                 "ref_name": "github-sync",
-                "selector": { "type": "custom", "pattern": "bitbucket-pipelines" }
+                "selector": { "type": "custom", "pattern": "sync-from-github" }
               }
             }'
