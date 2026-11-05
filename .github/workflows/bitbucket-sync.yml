@@ -1,0 +1,25 @@
+name: Trigger Bitbucket sync
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Bitbucket pipeline
+        run: |
+          curl --fail-with-body -X POST \
+            -H "Authorization: Bearer ${{ secrets.BITBUCKET_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            "https://api.bitbucket.org/2.0/repositories/ironmesh/sigma/pipelines/" \
+            -d '{
+              "target": {
+                "type": "pipeline_ref_target",
+                "ref_type": "branch",
+                "ref_name": "github-sync",
+                "selector": { "type": "custom", "pattern": "bitbucket-pipelines" }
+              }
+            }'
