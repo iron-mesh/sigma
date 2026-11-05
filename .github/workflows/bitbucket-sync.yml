@@ -2,7 +2,7 @@ name: Trigger Bitbucket sync
 
 on:
   push:
-    branches: ['**']
+    branches: ['main']
     tags: ['**']
 
 jobs:
